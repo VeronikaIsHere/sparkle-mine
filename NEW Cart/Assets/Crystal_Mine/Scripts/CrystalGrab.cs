@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class CrystalGrab : MonoBehaviour
 {
     public string crystalTag = "Crystal";
-    public int score = 0;
+    public Score scoreScript;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -14,11 +15,11 @@ public class CrystalGrab : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.tag + "->" + other.gameObject.name);
+        //Debug.Log(other.tag + "->" + other.gameObject.name);
         if (other.CompareTag(crystalTag))
         {
             CollectCrystal(other.gameObject);
-            score++;
+            scoreScript.IncrementScore(1);
         }
     }
 
@@ -27,3 +28,4 @@ public class CrystalGrab : MonoBehaviour
         crystal.SetActive(false);
     }
 }
+
