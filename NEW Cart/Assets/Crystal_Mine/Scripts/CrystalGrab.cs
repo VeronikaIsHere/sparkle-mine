@@ -11,6 +11,7 @@ public class CrystalGrab : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         OnTriggerEnter(collision.collider);
+        Debug.Log("OnTriggerEnter");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -20,12 +21,14 @@ public class CrystalGrab : MonoBehaviour
         {
             CollectCrystal(other.gameObject);
             scoreScript.IncrementScore(1);
+            Debug.Log("collected");
         }
     }
 
     private void CollectCrystal(GameObject crystal)
     {
         crystal.SetActive(false);
+        Debug.Log("deactivated");
     }
 }
 
