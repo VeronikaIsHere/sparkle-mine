@@ -1,34 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class CrystalGrab : MonoBehaviour
 {
     public string crystalTag = "Crystal";
     public Score scoreScript;
+    public Collider leftHandCollider;
+    public Collider rightHandCollider;
 
-    private void OnCollisionEnter(Collision collision)
+    private void Update()
     {
-        OnTriggerEnter(collision.collider);
-        Debug.Log("OnTriggerEnter");
+        CheckCollision(leftHandCollider);
+        CheckCollision(rightHandCollider);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void CheckCollision(Collider collider)
     {
-        //Debug.Log(other.tag + "->" + other.gameObject.name);
-        if (other.CompareTag(crystalTag))
+        if (collider != null && collider.enabled && collider.gameObject.activeInHierarchy)
         {
-            CollectCrystal(other.gameObject);
-            scoreScript.IncrementScore(1);
-            Debug.Log("collected");
+            Collider[] colliders = Physics.OverlapBox(collider.bounds.center, collider.bounds.extents, collider.transform.rotation);
+            foreach (Collider otherCollider in colliders)
+            {
+                if (otherCollider.CompareTag(crystalTag))
+                {
+                    CollectCrystal(otherCollider.gameObject);
+                    scoreScript.IncrementScore(1);
+                    Debug.Log("Collected by " + collider.name + ": " + otherCollider.name);
+                }
+                else
+                {
+                    Debug.Log("Collided with " + collider.name + " but not a crystal: " + otherCollider.name);
+                }
+            }
         }
     }
 
     private void CollectCrystal(GameObject crystal)
     {
         crystal.SetActive(false);
-        Debug.Log("deactivated");
+        Debug.Log("Deactivated: " + crystal.name);
     }
 }
-
