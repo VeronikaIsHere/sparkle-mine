@@ -15,20 +15,20 @@ public class CrystalGrab : MonoBehaviour
 
     private void CheckCollision(Collider collider)
     {
+        // Check if the collider is valid and active
         if (collider != null && collider.enabled && collider.gameObject.activeInHierarchy)
         {
+            // Get all colliders overlapping with the collider's bounding box
             Collider[] colliders = Physics.OverlapBox(collider.bounds.center, collider.bounds.extents, collider.transform.rotation);
+
+            // Iterate through each collider
             foreach (Collider otherCollider in colliders)
             {
+                // Check if the collider has the crystal tag
                 if (otherCollider.CompareTag(crystalTag))
                 {
                     CollectCrystal(otherCollider.gameObject);
                     scoreScript.IncrementScore(1);
-                    Debug.Log("Collected by " + collider.name + ": " + otherCollider.name);
-                }
-                else
-                {
-                    Debug.Log("Collided with " + collider.name + " but not a crystal: " + otherCollider.name);
                 }
             }
         }
@@ -36,7 +36,7 @@ public class CrystalGrab : MonoBehaviour
 
     private void CollectCrystal(GameObject crystal)
     {
+        // Deactivate the crystal
         crystal.SetActive(false);
-        Debug.Log("Deactivated: " + crystal.name);
     }
 }

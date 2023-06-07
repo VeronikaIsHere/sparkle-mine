@@ -6,7 +6,7 @@ using UnityEngine;
 public class MinecartMovement : MonoBehaviour
 {
     public Path_Comp spline;
-    public float speed = 1.0f;
+    public float speed = 10.0f;
     public bool isCircuit = false;
 
     private float currentDistance = 0.0f;
