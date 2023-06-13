@@ -6,6 +6,7 @@ public class CrystalGrab : MonoBehaviour
     public Score scoreScript;
     public Collider leftHandCollider;
     public Collider rightHandCollider;
+    public MinecartMovement minecartMovement;
 
     private void Update()
     {
@@ -29,6 +30,7 @@ public class CrystalGrab : MonoBehaviour
                 {
                     CollectCrystal(otherCollider.gameObject);
                     scoreScript.IncrementScore(1);
+                    minecartMovement.IncrementCrystalsCollected();
                 }
             }
         }
