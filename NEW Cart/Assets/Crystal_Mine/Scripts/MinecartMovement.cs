@@ -10,7 +10,7 @@ public class MinecartMovement : MonoBehaviour
 
     private int crystalsCollected = 0;
     private float baseSpeed = 2f;
-    private int crystalsPerSpeedIncrease = 5;
+    private int crystalsPerSpeedIncrease = 2;
     private float speedIncrement = 0.5f;
 
     private float currentSpeed;
@@ -32,6 +32,9 @@ public class MinecartMovement : MonoBehaviour
         // Set the cart's position and rotation based on the path point
         transform.position = pathPoint.point;
         transform.rotation = Quaternion.LookRotation(pathPoint.forward, pathPoint.up);
+
+        // Debug the current speed
+        Debug.Log("Current Speed: " + currentSpeed);
     }
 
     public void IncrementCrystalsCollected()
@@ -42,6 +45,7 @@ public class MinecartMovement : MonoBehaviour
         {
             // Increase the speed by the specified increment
             currentSpeed = baseSpeed + (crystalsCollected / crystalsPerSpeedIncrease) * speedIncrement;
+            Debug.Log("Speed Increased: " + currentSpeed);
         }
     }
 }

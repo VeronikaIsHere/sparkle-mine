@@ -3212,7 +3212,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4826482260062094, guid: 45775b024fd64674bab6655bde5115ef, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.699
+      value: -0.58
       objectReference: {fileID: 0}
     - target: {fileID: 4826482260062094, guid: 45775b024fd64674bab6655bde5115ef, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3731,9 +3731,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crystalTag: Crystal
   scoreScript: {fileID: 466540448}
-  leftHandCollider: {fileID: 0}
+  leftHandCollider: {fileID: 382069079}
   rightHandCollider: {fileID: 480902408}
-  minecartMovement: {fileID: 0}
+  minecartMovement: {fileID: 819386615}
 --- !u!4 &1072257734
 Transform:
   m_ObjectHideFlags: 0
@@ -4439,7 +4439,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1379876749
 MonoBehaviour:
   m_ObjectHideFlags: 0
