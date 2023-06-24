@@ -26,6 +26,7 @@ public class CrystalGrab : MonoBehaviour
             foreach (Collider otherCollider in colliders)
             {
                 // Check if the collider has the crystal tag
+                // TODO: Copy over as soon as hand colliders are implemented
                 if (otherCollider.CompareTag(crystalTag))
                 {
                     CollectCrystal(otherCollider.gameObject);
@@ -35,6 +36,16 @@ public class CrystalGrab : MonoBehaviour
             }
         }
     }
+
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     if (other.CompareTag(crystalTag))
+    //             {
+    //                 CollectCrystal(other.gameObject);
+    //                 scoreScript.IncrementScore(1);
+    //                 minecartMovement.IncrementCrystalsCollected();
+    //             }
+    // }
 
     private void CollectCrystal(GameObject crystal)
     {

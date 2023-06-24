@@ -15,6 +15,9 @@ public class MinecartMovement : MonoBehaviour
 
     private float currentSpeed;
 
+    private bool isPaused = false;
+    private float pausedSpeed;
+
     private void Start()
     {
         currentSpeed = baseSpeed;
@@ -22,19 +25,21 @@ public class MinecartMovement : MonoBehaviour
 
     private void Update()
     {
-        // Move the cart along the spline
-        currentDistance += currentSpeed * Time.deltaTime;
-        currentDistance = Mathf.Clamp(currentDistance, 0.0f, spline.TotalDistance);
+        if (!isPaused)
+        {
+            // Move the cart along the spline
+            currentDistance += currentSpeed * Time.deltaTime;
+            currentDistance = Mathf.Clamp(currentDistance, 0.0f, spline.TotalDistance);
 
-        // Get the path point on the spline at the current distance
-        Path_Point pathPoint = spline.GetPathPoint(currentDistance);
+            // Get the path point on the spline at the current distance
+            Path_Point pathPoint = spline.GetPathPoint(currentDistance);
 
-        // Set the cart's position and rotation based on the path point
-        transform.position = pathPoint.point;
-        transform.rotation = Quaternion.LookRotation(pathPoint.forward, pathPoint.up);
+            // Set the cart's position and rotation based on the path point
+            transform.position = pathPoint.point;
+            transform.rotation = Quaternion.LookRotation(pathPoint.forward, pathPoint.up);
 
-        // Debug the current speed
-        Debug.Log("Current Speed: " + currentSpeed);
+            //Debug.Log("Current Speed: " + currentSpeed);
+        }
     }
 
     public void IncrementCrystalsCollected()
@@ -45,7 +50,26 @@ public class MinecartMovement : MonoBehaviour
         {
             // Increase the speed by the specified increment
             currentSpeed = baseSpeed + (crystalsCollected / crystalsPerSpeedIncrease) * speedIncrement;
-            Debug.Log("Speed Increased: " + currentSpeed);
+            //Debug.Log("Speed Increased: " + currentSpeed);
+        }
+    }
+
+    public void PauseMovement()
+    {
+        if (!isPaused)
+        {
+            isPaused = true;
+            pausedSpeed = currentSpeed;
+            currentSpeed = 0f;
+        }
+    }
+
+    public void ResumeMovement()
+    {
+        if (isPaused)
+        {
+            isPaused = false;
+            currentSpeed = pausedSpeed;
         }
     }
 }

@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Crystal
   - Controller
+  - ResumeButton
+  - QuitButton
+  - RestartButton
   layers:
   - Default
   - TransparentFX
