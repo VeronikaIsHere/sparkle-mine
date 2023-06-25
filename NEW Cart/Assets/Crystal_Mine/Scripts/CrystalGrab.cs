@@ -8,6 +8,12 @@ public class CrystalGrab : MonoBehaviour
     public Collider rightHandCollider;
     public MinecartMovement minecartMovement;
 
+    private AudioSource _audioSource;
+
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
     private void Update()
     {
         CheckCollision(leftHandCollider);
@@ -29,6 +35,8 @@ public class CrystalGrab : MonoBehaviour
                 // TODO: Copy over as soon as hand colliders are implemented
                 if (otherCollider.CompareTag(crystalTag))
                 {
+                    _audioSource.time = 0.5f;
+                    _audioSource.Play();
                     CollectCrystal(otherCollider.gameObject);
                     scoreScript.IncrementScore(1);
                     minecartMovement.IncrementCrystalsCollected();
@@ -49,6 +57,7 @@ public class CrystalGrab : MonoBehaviour
 
     private void CollectCrystal(GameObject crystal)
     {
+        
         // Deactivate the crystal
         crystal.SetActive(false);
     }
