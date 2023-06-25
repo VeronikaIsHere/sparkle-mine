@@ -22,6 +22,7 @@ public class PauseMenuManager : MonoBehaviour
     private void Start()
     {
         xrController = FindObjectOfType<XRController>();
+        buttonPanel.SetActive(false);
     }
 
     private void Update()
@@ -45,7 +46,7 @@ public class PauseMenuManager : MonoBehaviour
                 else
                 {
                     PauseGame();
-                    // Debug.Log("Paused");
+                    //Debug.Log("Paused");
                 }
             }
         }
@@ -58,9 +59,10 @@ public class PauseMenuManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Triggered:", other.gameObject);
+        //Debug.Log("Triggered:", other.gameObject);
+
         if (other.tag != "")
-            Debug.Log("Why no tag?", other.gameObject);
+            //Debug.Log("Why no tag?", other.gameObject);
 
         if (other.CompareTag("RestartButton"))
         {

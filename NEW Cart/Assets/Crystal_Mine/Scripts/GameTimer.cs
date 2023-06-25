@@ -35,12 +35,24 @@ public class GameTimer : MonoBehaviour
         }
     }
 
-    void updateTimer(float currentTime) {
+    public void updateTimer(float currentTime) 
+    {
         currentTime += 1;
         float minutes = Mathf.FloorToInt(currentTime / 60);
         float seconds = Mathf.FloorToInt(currentTime % 60);
 
         timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-        Debug.Log(seconds);
+        //Debug.Log(seconds);
+    }
+
+    public float GetCurrentTime()
+    {
+        return timeLeft;
+    }
+
+    public string GetTimeText()
+    {
+        return timeText.text;
     }
 }
+
